@@ -55,10 +55,13 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\LerpUpDown.cs" />
     <Compile Include="Assets\Scripts\LeftRightInput.cs" />
-    <Compile Include="Assets\Scripts\LerpFoward.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\SmoothCameraFollow.cs" />
+    <Compile Include="Assets\Scripts\LerpFoward.cs" />
+    <Compile Include="Assets\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

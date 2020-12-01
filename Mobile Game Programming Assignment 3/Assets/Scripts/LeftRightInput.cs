@@ -17,7 +17,7 @@ public class LeftRightInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.touchCount > 0 && !isGameOver)
+        if (Input.touchCount > 0 && !isGameOver)
         {
             gameStart = true;
             touch = Input.GetTouch(0);
@@ -36,15 +36,18 @@ public class LeftRightInput : MonoBehaviour
     {
         if(other.gameObject.tag == "Tile")
         {
+            FindObjectOfType<AudioManager>().Play("Hit");
             LerpFoward.nxtPosition();
             LerpFoward.StartLerp();
         }
-        else if(other.gameObject.tag == "End")
+        if(other.gameObject.tag == "End")
         {
+            FindObjectOfType<AudioManager>().Play("Hit");
             isGameOver = true;
         }
-        else if(other.gameObject.tag == "Miss")
+        if(other.gameObject.tag == "Miss")
         {
+            FindObjectOfType<AudioManager>().Play("Miss");
             isGameOver = true;
         }
     }

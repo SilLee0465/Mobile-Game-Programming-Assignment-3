@@ -18,7 +18,7 @@ public class LerpUpDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(LeftRightInput.gameStart == true)
+        if (LeftRightInput.gameStart == true)
         {
             t += Time.deltaTime;
             transform.localPosition = Vector3.LerpUnclamped(down, up, t);
