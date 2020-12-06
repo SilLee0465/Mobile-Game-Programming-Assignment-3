@@ -32,7 +32,7 @@ public class LerpFoward : MonoBehaviour
     {
         if (t <= 1.0f)
         {
-            t += GameObject.FindWithTag("Player").GetComponent<LeftRightInput>().multiplier * Time.deltaTime;
+            t += Time.deltaTime;
             transform.localPosition = Vector3.LerpUnclamped(current, nxt, t);
         }
         else

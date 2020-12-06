@@ -21,7 +21,7 @@ public class LerpUpDown : MonoBehaviour
     {
         if (LeftRightInput.gameStart == true)
         {
-            t += (GameObject.FindWithTag("Player").GetComponent<LeftRightInput>().multiplier * 2) * Time.deltaTime;
+            t += 2 * Time.deltaTime;
             transform.localPosition = Vector3.LerpUnclamped(down, up, t);
             if (t >= 1)
             {

@@ -8,12 +8,10 @@ public class LeftRightInput : MonoBehaviour
     public bool gameStart, isGameOver = false;
     private float speedModifier;
     private Touch touch;
-    [HideInInspector] public float multiplier;
 
     void Start()
     {
         speedModifier = 0.01f;
-        multiplier = 0.6f;
     }
 
     // Update is called once per frame
@@ -33,26 +31,25 @@ public class LeftRightInput : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         #region beat speed
-        if (other.gameObject.tag == "HyperFastBeat")
-        {
-            LerpFoward.nxtPosition();
-            LerpFoward.StartLerp();
-            multiplier = 2.5f;
-            //FindObjectOfType<AudioManager>().Play("Hit");
-
-        }
         if (other.gameObject.tag == "FastBeat")
         {
             LerpFoward.nxtPosition();
             LerpFoward.StartLerp();
-            multiplier = 1.25f;
+            Time.timeScale = 3.5f;
             //FindObjectOfType<AudioManager>().Play("Hit");
         }
         if (other.gameObject.tag == "MediumBeat")
         {
             LerpFoward.nxtPosition();
             LerpFoward.StartLerp();
-            multiplier = 1.10f;
+            Time.timeScale = 1.76f;
+            //FindObjectOfType<AudioManager>().Play("Hit");
+        }
+        if (other.gameObject.tag == "SlowBeat")
+        {
+            LerpFoward.nxtPosition();
+            LerpFoward.StartLerp();
+            Time.timeScale = 0.4f;
             //FindObjectOfType<AudioManager>().Play("Hit");
         }
         #endregion
@@ -61,6 +58,7 @@ public class LeftRightInput : MonoBehaviour
         {
             //FindObjectOfType<AudioManager>().Play("Hit");
             isGameOver = true;
+            Time.timeScale = 0.0f;
         }
         if(other.gameObject.tag == "Miss")
         {

@@ -9,7 +9,6 @@ TagManager:
   - FastBeat
   - MediumBeat
   - SlowBeat
-  - HyperFastBeat
   layers:
   - Default
   - TransparentFX
