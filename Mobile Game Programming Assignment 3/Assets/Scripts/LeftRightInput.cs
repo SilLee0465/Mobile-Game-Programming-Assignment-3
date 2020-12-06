@@ -36,27 +36,23 @@ public class LeftRightInput : MonoBehaviour
             LerpFoward.nxtPosition();
             LerpFoward.StartLerp();
             Time.timeScale = 3.5f;
-            //FindObjectOfType<AudioManager>().Play("Hit");
         }
         if (other.gameObject.tag == "MediumBeat")
         {
             LerpFoward.nxtPosition();
             LerpFoward.StartLerp();
-            Time.timeScale = 1.76f;
-            //FindObjectOfType<AudioManager>().Play("Hit");
+            Time.timeScale = 1.77f;
         }
         if (other.gameObject.tag == "SlowBeat")
         {
             LerpFoward.nxtPosition();
             LerpFoward.StartLerp();
             Time.timeScale = 0.4f;
-            //FindObjectOfType<AudioManager>().Play("Hit");
         }
         #endregion
 
         if (other.gameObject.tag == "End")
         {
-            //FindObjectOfType<AudioManager>().Play("Hit");
             isGameOver = true;
             Time.timeScale = 0.0f;
         }
