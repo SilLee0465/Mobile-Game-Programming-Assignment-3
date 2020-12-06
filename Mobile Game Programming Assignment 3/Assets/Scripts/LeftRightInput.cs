@@ -8,10 +8,12 @@ public class LeftRightInput : MonoBehaviour
     public bool gameStart, isGameOver = false;
     private float speedModifier;
     private Touch touch;
+    [HideInInspector] public float multiplier;
 
     void Start()
     {
         speedModifier = 0.01f;
+        multiplier = 0.6f;
     }
 
     // Update is called once per frame
@@ -25,29 +27,44 @@ public class LeftRightInput : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x + touch.deltaPosition.x * speedModifier, transform.position.y, transform.position.z);
             }
-            //if (Input.GetTouch(0).phase == TouchPhase.Began)
-            //{
-            //    gameStart = true;
-            //}
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Tile")
+        #region beat speed
+        if (other.gameObject.tag == "HyperFastBeat")
         {
-            FindObjectOfType<AudioManager>().Play("Hit");
             LerpFoward.nxtPosition();
             LerpFoward.StartLerp();
+            multiplier = 2.5f;
+            //FindObjectOfType<AudioManager>().Play("Hit");
+
         }
-        if(other.gameObject.tag == "End")
+        if (other.gameObject.tag == "FastBeat")
         {
-            FindObjectOfType<AudioManager>().Play("Hit");
+            LerpFoward.nxtPosition();
+            LerpFoward.StartLerp();
+            multiplier = 1.25f;
+            //FindObjectOfType<AudioManager>().Play("Hit");
+        }
+        if (other.gameObject.tag == "MediumBeat")
+        {
+            LerpFoward.nxtPosition();
+            LerpFoward.StartLerp();
+            multiplier = 1.10f;
+            //FindObjectOfType<AudioManager>().Play("Hit");
+        }
+        #endregion
+
+        if (other.gameObject.tag == "End")
+        {
+            //FindObjectOfType<AudioManager>().Play("Hit");
             isGameOver = true;
         }
         if(other.gameObject.tag == "Miss")
         {
-            FindObjectOfType<AudioManager>().Play("Miss");
+            //FindObjectOfType<AudioManager>().Play("Miss");
             isGameOver = true;
         }
     }

@@ -5,9 +5,10 @@ using UnityEngine;
 public class LerpUpDown : MonoBehaviour
 {
     [SerializeField] private LeftRightInput LeftRightInput;
-    public Transform tUp, tDown;
+    [SerializeField] private Transform tUp, tDown;
     private Vector3 up, down;
     private float t;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +21,9 @@ public class LerpUpDown : MonoBehaviour
     {
         if (LeftRightInput.gameStart == true)
         {
-            t += Time.deltaTime;
+            t += (GameObject.FindWithTag("Player").GetComponent<LeftRightInput>().multiplier * 2) * Time.deltaTime;
             transform.localPosition = Vector3.LerpUnclamped(down, up, t);
-            if (t >= 1.0f)
+            if (t >= 1)
             {
                 transform.localPosition = up;
                 t = 0;

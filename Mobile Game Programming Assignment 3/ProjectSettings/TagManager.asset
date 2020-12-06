@@ -4,9 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Tile
   - End
   - Miss
+  - FastBeat
+  - MediumBeat
+  - SlowBeat
+  - HyperFastBeat
   layers:
   - Default
   - TransparentFX

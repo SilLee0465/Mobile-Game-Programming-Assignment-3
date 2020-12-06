@@ -9,7 +9,7 @@ public class LerpFoward : MonoBehaviour
     public GameObject Tiles;    
     Vector3 current, nxt;
     private int i = 1;
-    private float t;
+    public float t;
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +28,11 @@ public class LerpFoward : MonoBehaviour
             StartLerp();
         }
     }
-
     public void StartLerp()
     {
-        if(t <= 1.0f)
+        if (t <= 1.0f)
         {
-            t += 0.5f * Time.deltaTime;
+            t += GameObject.FindWithTag("Player").GetComponent<LeftRightInput>().multiplier * Time.deltaTime;
             transform.localPosition = Vector3.LerpUnclamped(current, nxt, t);
         }
         else
@@ -49,11 +48,11 @@ public class LerpFoward : MonoBehaviour
 
     public void nxtPosition()
     {
-        currentPos = Tiles.transform.GetChild(0 + i).gameObject;
-        current = currentPos.transform.localPosition;
-        nxtPos = Tiles.transform.GetChild(1 + i).gameObject;
-        nxt = nxtPos.transform.localPosition;
         t = 0.0f;
+        currentPos = Tiles.transform.GetChild(i).gameObject;
+        current = currentPos.transform.localPosition;
+        nxtPos = Tiles.transform.GetChild(i + 1).gameObject;
+        nxt = nxtPos.transform.localPosition;
         i++;
     }
 }
