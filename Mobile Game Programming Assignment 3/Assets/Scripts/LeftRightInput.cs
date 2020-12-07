@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LeftRightInput : MonoBehaviour
 {
+    [SerializeField] private GameObject Instructions;
     [SerializeField] private LerpFoward LerpFoward;
+    [SerializeField] private TextMeshProUGUI scoreText;
     public bool gameStart, isGameOver = false;
     private float speedModifier;
     private Touch touch;
+    private int score;
 
     void Start()
     {
@@ -17,8 +21,10 @@ public class LeftRightInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scoreText.text = score.ToString("0");
         if (Input.touchCount > 0 && !isGameOver)
         {
+            Instructions.SetActive(false);
             gameStart = true;
             touch = Input.GetTouch(0);
             if(touch.phase == TouchPhase.Moved)
@@ -36,18 +42,21 @@ public class LeftRightInput : MonoBehaviour
             LerpFoward.nxtPosition();
             LerpFoward.StartLerp();
             Time.timeScale = 3.5f;
+            score += 100;
         }
         if (other.gameObject.tag == "MediumBeat")
         {
             LerpFoward.nxtPosition();
             LerpFoward.StartLerp();
             Time.timeScale = 1.77f;
+            score += 100;
         }
         if (other.gameObject.tag == "SlowBeat")
         {
             LerpFoward.nxtPosition();
             LerpFoward.StartLerp();
             Time.timeScale = 0.4f;
+            score += 100;
         }
         #endregion
 
@@ -60,6 +69,10 @@ public class LeftRightInput : MonoBehaviour
         {
             //FindObjectOfType<AudioManager>().Play("Miss");
             isGameOver = true;
+            if(isGameOver == true && score > PlayerPrefs.GetInt("FatRatUnityHighScore", 0))
+            {
+                PlayerPrefs.SetInt("FatRatUnityHighScore", score);
+            }
         }
     }
 }

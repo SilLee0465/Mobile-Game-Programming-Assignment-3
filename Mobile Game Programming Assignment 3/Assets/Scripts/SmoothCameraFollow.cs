@@ -7,7 +7,7 @@ public class SmoothCameraFollow : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 desiredPosition = new Vector3(player.position.x, 4.45f, player.position.z - 10.53f);
+        Vector3 desiredPosition = new Vector3(player.position.x, 4.45f, player.position.z - 12f);
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         transform.position = smoothedPosition;
     }
