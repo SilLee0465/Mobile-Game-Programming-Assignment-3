@@ -11,14 +11,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!startPlaying)
+        if (!startPlaying)
         {
-            if(LeftRightInput.gameStart == true)
+            if (LeftRightInput.gameStart == true)
             {
                 startPlaying = true;
 
                 Music.Play();
             }
+        }
+        if (LeftRightInput.isGameOver == true)
+        {
+            Music.Stop();
         }
     }
 }

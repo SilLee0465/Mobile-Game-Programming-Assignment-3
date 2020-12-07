@@ -8,6 +8,8 @@ public class LeftRightInput : MonoBehaviour
     [SerializeField] private GameObject Instructions;
     [SerializeField] private LerpFoward LerpFoward;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI highScoreText;
+    [SerializeField] private GameObject gameOver;
     public bool gameStart, isGameOver = false;
     private float speedModifier;
     private Touch touch;
@@ -21,7 +23,7 @@ public class LeftRightInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = score.ToString("0");
+        scoreText.text = "Score " + score.ToString("0");
         if (Input.touchCount > 0 && !isGameOver)
         {
             Instructions.SetActive(false);
@@ -69,9 +71,15 @@ public class LeftRightInput : MonoBehaviour
         {
             //FindObjectOfType<AudioManager>().Play("Miss");
             isGameOver = true;
+            gameOver.SetActive(true);
             if(isGameOver == true && score > PlayerPrefs.GetInt("FatRatUnityHighScore", 0))
             {
                 PlayerPrefs.SetInt("FatRatUnityHighScore", score);
+                highScoreText.text = "New High Score! " + PlayerPrefs.GetInt("FatRatUnityHighScore", 0).ToString();
+            }
+            else
+            {
+                highScoreText.text = "High Score " + PlayerPrefs.GetInt("FatRatUnityHighScore", 0).ToString();
             }
         }
     }
